@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuoteVault — 100 Well-Known Quotes</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>">
+</head>
+<body data-theme="dark">
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <span class="logo-icon">📜</span>
+        <div>
+          <h1>QuoteVault</h1>
+          <p class="subtitle">100 well-known quotes from history's greatest minds</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="btn btn-secondary" title="Toggle theme">
+          <span id="themeIcon">☀️</span>
+          <span id="themeText">Light Mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Card: Random Quote -->
+    <section class="hero-section">
+      <div class="section-label">
+        <span>✨ Featured Random Quote</span>
+      </div>
+      <div class="quote-card hero-card" id="heroCard">
+        <div class="quote-decoration">“</div>
+        <div class="quote-content-wrapper">
+          <blockquote class="hero-quote-text" id="heroQuoteText">
+            Loading quote...
+          </blockquote>
+          <div class="hero-quote-meta">
+            <cite class="hero-quote-author" id="heroQuoteAuthor">— Loading</cite>
+            <span class="category-pill" id="heroQuoteCategory">Category</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button id="randomQuoteBtn" class="btn btn-primary">
+            <span class="btn-icon">🎲</span> Next Random Quote
+          </button>
+          <button id="copyHeroBtn" class="btn btn-secondary" title="Copy to clipboard">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filter Controls -->
+    <section class="filter-section">
+      <div class="filter-card">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by quote keyword or author name..."
+            autocomplete="off"
+          />
+          <button id="clearSearchBtn" class="btn-clear hidden" title="Clear search">✕</button>
+        </div>
+
+        <div class="filter-controls">
+          <div class="select-group">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="">All Categories (100)</option>
+            </select>
+          </div>
+
+          <div class="select-group">
+            <label for="authorFilter">Author</label>
+            <select id="authorFilter">
+              <option value="">All Authors</option>
+            </select>
+          </div>
+
+          <div class="filter-buttons">
+            <button id="randomFromFilterBtn" class="btn btn-secondary" title="Get random quote matching filters">
+              🎲 Random from Filters
+            </button>
+            <button id="resetFiltersBtn" class="btn btn-outline" title="Reset all search filters">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Status & Gallery -->
+    <section class="results-section">
+      <div class="results-header">
+        <h2 class="results-title">All Quotes</h2>
+        <span class="results-count" id="resultsCount">Loading quotes...</span>
+      </div>
+
+      <!-- Quotes Grid -->
+      <div class="quotes-grid" id="quotesGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state hidden" id="emptyState">
+        <span class="empty-icon">🔎</span>
+        <h3>No matching quotes found</h3>
+        <p>Try refining your search keyword or clearing the filters.</p>
+        <button id="emptyResetBtn" class="btn btn-primary">Reset Filters</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>QuoteVault &bull; 100 Hand-Curated Well-Known Quotes &bull; Powered by Python Flask & Vanilla JavaScript</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Quote copied to clipboard!</div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
